@@ -1,0 +1,7 @@
+#!/bin/bash
+#En este archivo se hara el respaldo de los archivos home root ssh centro de computos, el playbook de configuracion ssh 
+
+tar -czf respaldo.tgz /home /root /etc/ssh centro playbook01.yml 
+rsync respaldo.tgz /home/respaldo 
+
+   

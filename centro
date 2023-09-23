@@ -1,0 +1,95 @@
+
+
+altas_usuarios () { 
+useradd $user
+echo "Se ha agregado al usuario "$user"" 
+} 
+
+bajas_usuarios () { 
+userdel $user
+echo "Se ha eliminado al usuario "$user"" 
+} 
+
+modificaciones_usuarios () { 
+usermod $user 
+echo "Se han desplegado todas las opciones de modificacion para el usuario" 
+} 
+
+altas_grupos () { 
+groupadd $grupo
+echo "Se ha agregado el grupo "$grupo"" 
+} 
+
+modificaciones_grupos () { 
+groupmod $grupo 
+echo "Se han desplegado todas las opciones de modificacion para el grupo" 
+} 
+
+
+op=1;
+while [ $op -ne 0 ] 
+do 
+echo "¿Que desea realizar?" 
+echo "1.Altas usuarios" 
+echo "2.Bajas usuarios" 
+echo "3.Modificaciones usuarios" 
+echo "4.Altas grupos" 
+echo "5.Bajas grupos" 
+echo "6.Modificaciones grupos"
+echo "7.Realizar un respaldo" 
+echo "8.Logs del sistema"  
+echo "0.Salir" 
+read op 
+case $op in 
+1)
+clear 
+echo "/ALTAS USUARIOS/" 
+echo "Ingrese nombre del usuario a agregar" 
+read user 
+altas_usuarios $user
+;;
+2)
+clear 
+echo "/BAJAS USUARIOS/" 
+echo "Ingrese nombre del usuario a eliminar" 
+read user 
+bajas_usuarios $user
+;; 
+3)
+clear 
+echo "/MODIFICACIONES USUARIOS/" 
+echo "Ingrese nombre del usuario a modificar" 
+read user 
+modificaciones_usuarios $user 
+;; 
+4)
+clear 
+echo "/ALTAS GRUPOS/" 
+echo "Ingrese nombre del grupo a agregar" 
+read grupo 
+altas_grupos $grupo 
+;; 
+5)
+clear 
+echo "/BAJAS GRUPOS/" 
+echo "Ingrese nombre del grupo a eliminar" 
+read grupo 
+bajas_grupos $grupo 
+;;
+6)
+clear 
+echo "/MODIFICACIONES GRUPOS/" 
+echo "Ingrese nombre del grupo a modificar" 
+read grupo 
+modificaciones_grupos $grupo
+;;
+7)
+clear 
+sudo sh backup
+;;
+8)
+clear
+sh systemlogs
+;;
+esac 
+done
