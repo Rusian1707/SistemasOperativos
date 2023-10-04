@@ -1,0 +1,69 @@
+inicio_de_sesion_usuario_especifico () {
+existe=$(grep "$user" /etc/passwd | cut -d: -f1)
+lastlog -u $user
+}  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+op=1;
+while [ $op -ne 0 ] 
+do 
+echo "1.Ver usuarios conectados" 
+echo "2.Ver inicios de sesion exitosos" 
+echo "3.Ver inicios de sesion fallidos" 
+echo "4.Ver inicios de sesion recientes de todos los usuarios" 
+echo "5.Ver inicios de sesion recientes de un usuario especifico"
+echo "0.Salir"  
+read op
+case $op in 
+1) 
+clear
+echo "//USUARIOS CONECTADOS//" 
+who -a  
+;; 
+2) 
+clear
+echo "//INICIOS DE SESION EXITOSOS//" 
+last 
+;; 
+3) 
+clear
+echo "//INICIOS DE SESION FALLIDOS//" 
+sudo lastb
+;;
+4) 
+clear
+echo "//INICIOS DE SESION RECIENTES//" 
+lastlog
+;; 
+5) 
+clear
+echo "//INICIOS DE SESION DE UN USUARIO ESPECIFICO//" 
+echo "Ingrese nombre del usuario a ver inicios de sesion" 
+read user
+inicio_de_sesion_usuario_especifico $user
+;; 
+esac
+done
+
+ 
+ 
+
